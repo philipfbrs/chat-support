@@ -59,15 +59,15 @@ export const ChatSupport = () => {
   };
 
   const handleData = (newData) => {
-    if (status.nameStatus === "error") {
+    if (status.nameStatus === "null") {
       setStatus({ ...status, nameStatus: "error" });
     }
 
-    if (status.emailStatus === "error") {
+    if (status.emailStatus === "null") {
       setStatus({ ...status, emailStatus: "error" });
     }
 
-    if (status.emailStatus === "error" || status.nameStatus === "error") {
+    if (status.emailStatus === "error" || status.nameStatus === "error" || status.nameStatus === "null" || status.emailStatus === "null") {
       return
     }
 
