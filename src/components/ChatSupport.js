@@ -59,7 +59,7 @@ export const ChatSupport = () => {
   };
 
   const handleData = (newData) => {
-    if (status.nameStatus !== "success" && status.emailStatus !== "success")
+    if (status.nameStatus === "error" || status.emailStatus === "error")
       return;
 
       console.log(data)
