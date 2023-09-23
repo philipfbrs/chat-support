@@ -37,7 +37,7 @@ export const ChatSupport = () => {
       setStatus({ ...status, [stts]: "error" });
       return;
     }
-    setData({...data, [stts.replace('Status','')]: value})
+    setData({ ...data, [stts.replace("Status", "")]: value });
     setStatus({ ...status, [stts]: "success" });
   };
 
@@ -59,15 +59,27 @@ export const ChatSupport = () => {
   };
 
   const handleData = (newData) => {
-    if (status.nameStatus === "error" || status.emailStatus === "error")
-      return;
+    if (status.nameStatus === "error") {
+      setStatus({ ...status, nameStatus: "error" });
+    }
 
-      console.log(data)
+    if (status.emailStatus === "error") {
+      setStatus({ ...status, emailStatus: "error" });
+    }
+
+    if (status.emailStatus === "error" || status.nameStatus === "error") {
+      return
+    }
+
     setContent(1);
     setConversation([
       {
         id: "0",
-        answer: [ `Hi ${data.name || "Anonymous"}! Welcome to `, <i>The Favis Car Rentals</i>, ' what can i do for you?']
+        answer: [
+          `Hi ${data.name || "Anonymous"}! Welcome to `,
+          <i>The Favis Car Rentals</i>,
+          " what can i do for you?",
+        ],
       },
     ]);
   };
@@ -87,25 +99,21 @@ export const ChatSupport = () => {
     setConversation([]);
   };
 
-  useEffect(() => {
-    console.log(conversation);
-  }, [conversation]);
-
   const handlePushConversation = (id) => {
     const newConversation = StaticConversation.find((sc) => sc.id === id);
     setConversation([...conversation, newConversation]);
   };
 
-  useEffect(()=> {
+  useEffect(() => {
     updateScroll();
-  },[conversation])
-  
+  }, [conversation]);
+
   function updateScroll() {
     const element = document.getElementById("content");
-    if(element){
+    if (element) {
       element.scrollTop = element.scrollHeight;
-    } 
-  } 
+    }
+  }
 
   return (
     <div
