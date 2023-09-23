@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { ValidateProfile } from "./chat/ValidateProfile";
 import { Main } from "./chat/Main";
@@ -13,8 +13,10 @@ export const Chat = ({
   handleChangeData,
   status,
   convQandA,
-  handlePushConversation
+  handlePushConversation,
+  updateScroll
 }) => {
+ 
   return (
     // Header
     <div className="w-auto md:w-96 h-full max-h-full md:h-[500px] shadow-xl z-50 bg-white">
@@ -75,7 +77,7 @@ export const Chat = ({
           </div>
         </div>
       </div>
-      <div className="h-[90%] p-4 overflow-y-auto flex flex-col justify-between">
+      <div id='content' className="h-[90%] p-4 overflow-y-auto flex flex-col justify-between">
         {(() => {
           switch (content) {
             case 1:
@@ -85,6 +87,7 @@ export const Chat = ({
                   convQandA={convQandA}
                   conversation={conversation}
                   handlePushConversation={handlePushConversation}
+                  updateScroll={updateScroll}
                 />
               );
 

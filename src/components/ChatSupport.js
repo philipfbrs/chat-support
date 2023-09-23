@@ -96,6 +96,17 @@ export const ChatSupport = () => {
     setConversation([...conversation, newConversation]);
   };
 
+  useEffect(()=> {
+    updateScroll();
+  },[conversation])
+  
+  function updateScroll() {
+    const element = document.getElementById("content");
+    if(element){
+      element.scrollTop = element.scrollHeight;
+    } 
+  } 
+
   return (
     <div
       className={`${
@@ -119,6 +130,7 @@ export const ChatSupport = () => {
                 handlePushConversation={handlePushConversation}
                 handleChangeData={handleChangeData}
                 handleClose={handleClose}
+                updateScroll={updateScroll}
               />
             );
           default:
