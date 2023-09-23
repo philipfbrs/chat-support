@@ -1,7 +1,20 @@
 import React from "react";
-import { ValidateProfile } from "./chat/ValidateProfile";
 
-export const Chat = ({ handleStep, content,data, handleData, handleChangeData, status }) => {
+import { ValidateProfile } from "./chat/ValidateProfile";
+import { Main } from "./chat/Main";
+
+export const Chat = ({
+  handleStep,
+  content,
+  data,
+  conversation,
+  handleData,
+  handleClose,
+  handleChangeData,
+  status,
+  convQandA,
+  handlePushConversation
+}) => {
   return (
     // Header
     <div className="w-auto md:w-96 h-full max-h-full md:h-[500px] shadow-xl z-50 bg-white">
@@ -36,7 +49,7 @@ export const Chat = ({ handleStep, content,data, handleData, handleChangeData, s
             <div
               className="h-full cursor-pointer"
               onClick={() => {
-                handleStep(0);
+                handleClose();
               }}
             >
               <svg
@@ -66,9 +79,23 @@ export const Chat = ({ handleStep, content,data, handleData, handleChangeData, s
         {(() => {
           switch (content) {
             case 1:
-              return;
+              return (
+                <Main
+                  data={data}
+                  convQandA={convQandA}
+                  conversation={conversation}
+                  handlePushConversation={handlePushConversation}
+                />
+              );
+
             default:
-              return <ValidateProfile handleData={handleData} handleChangeData={handleChangeData}  status={status}/>;
+              return (
+                <ValidateProfile
+                  handleData={handleData}
+                  handleChangeData={handleChangeData}
+                  status={status}
+                />
+              );
           }
         })()}
       </div>

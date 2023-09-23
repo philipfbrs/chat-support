@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Chat } from "./chat-support-widget/Chat";
 import { ChatLogo } from "./chat-support-widget/ChatLogo";
+import { StaticConversation } from "./chat-support-widget/chat/StaticConversation";
 
 export const ChatSupport = () => {
   const [step, setStep] = useState(0);
@@ -9,9 +10,10 @@ export const ChatSupport = () => {
     email: "",
   });
   const [status, setStatus] = useState({
-    nameStatus: "success",
-    emailStatus: "success",
+    nameStatus: null,
+    emailStatus: null,
   });
+  const [conversation, setConversation] = useState([]);
   const [content, setContent] = useState(0);
 
   const handleStep = (stp) => {
@@ -35,6 +37,7 @@ export const ChatSupport = () => {
       setStatus({ ...status, [stts]: "error" });
       return;
     }
+    setData({...data, [stts.replace('Status','')]: value})
     setStatus({ ...status, [stts]: "success" });
   };
 
@@ -58,8 +61,39 @@ export const ChatSupport = () => {
   const handleData = (newData) => {
     if (status.nameStatus !== "success" && status.emailStatus !== "success")
       return;
-    setData(newData);
-    setContent(2);
+
+      console.log(data)
+    setContent(1);
+    setConversation([
+      {
+        id: "0",
+        answer: [ `Hi ${data.name || "Anonymous"}! Welcome to `, <i>The Favis Car Rentals</i>, ' what can i do for you?']
+      },
+    ]);
+  };
+
+  const handleClose = () => {
+    // Reset All the values
+    setData({
+      name: "",
+      email: "",
+    });
+    setStatus({
+      nameStatus: "success",
+      emailStatus: "success",
+    });
+    setContent(0);
+    setStep(0);
+    setConversation([]);
+  };
+
+  useEffect(() => {
+    console.log(conversation);
+  }, [conversation]);
+
+  const handlePushConversation = (id) => {
+    const newConversation = StaticConversation.find((sc) => sc.id === id);
+    setConversation([...conversation, newConversation]);
   };
 
   return (
@@ -79,8 +113,12 @@ export const ChatSupport = () => {
                 content={content}
                 data={data}
                 status={status}
+                convQandA={StaticConversation}
+                conversation={conversation}
                 handleData={handleData}
+                handlePushConversation={handlePushConversation}
                 handleChangeData={handleChangeData}
+                handleClose={handleClose}
               />
             );
           default:
