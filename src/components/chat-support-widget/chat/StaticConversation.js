@@ -1,5 +1,4 @@
 export const StaticConversation = [
-  
   {
     id: "1",
     question: "What we offer?",
@@ -14,6 +13,8 @@ export const StaticConversation = [
       <a
         className="text-green-700 underline"
         href="https://turo.com/us/en/drivers/5623072"
+        target="_blank"
+        rel="noreferrer"
       >
         Rent Now!
       </a>,
@@ -32,6 +33,8 @@ export const StaticConversation = [
       <a
         className="text-green-700 underline"
         href="https://turo.com/us/en/drivers/5623072"
+        target="_blank"
+        rel="noreferrer"
       >
         Register Now!
       </a>,
@@ -50,6 +53,8 @@ export const StaticConversation = [
       <a
         className="text-green-700 underline"
         href="http://thefavis.com/parking"
+        target="_blank"
+        rel="noreferrer"
       >
         Park Now!
       </a>,
@@ -62,12 +67,21 @@ export const StaticConversation = [
   },
   {
     id: "3",
-    question: "Where are help",
-    answer: "2315 Greens Road, Houston TX, 77032",
+    question: "Need Help?",
+    answer: [
+      <a
+        className="text-green-700 underline"
+        target="_blank"
+        href="http://thefavis.com/help"
+        rel="noreferrer"
+      >
+        Need Help? Click me
+      </a>,
+    ],
   },
-  {
-    id: "4",
-    question: "Where are we located?",
-    answer: "2315 Greens Road, Houston TX, 77032",
-  },
+  //   {
+  //     id: "4",
+  //     question: "Where are we located?",
+  //     answer: "2315 Greens Road, Houston TX, 77032",
+  //   },
 ];
