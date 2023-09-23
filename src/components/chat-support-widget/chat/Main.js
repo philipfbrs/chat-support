@@ -98,7 +98,6 @@ export const Main = ({
             className="my-1 bg-slate-500 self-end p-2 rounded-lg cursor-pointer"
             onClick={() => {
               handlePushConversation(q.id);
-           
             }}
           >
             {q.question}

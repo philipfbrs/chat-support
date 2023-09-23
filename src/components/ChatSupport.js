@@ -59,16 +59,17 @@ export const ChatSupport = () => {
   };
 
   const handleData = (newData) => {
-    if (status.nameStatus === "null") {
-      setStatus({ ...status, nameStatus: "error" });
-    }
-
-    if (status.emailStatus === "null") {
-      setStatus({ ...status, emailStatus: "error" });
-    }
-
-    if (status.emailStatus === "error" || status.nameStatus === "error" || status.nameStatus === "null" || status.emailStatus === "null") {
-      return
+    if (
+      status.emailStatus === "error" ||
+      status.nameStatus === "error" ||
+      status.nameStatus === null ||
+      status.emailStatus === null
+    ) {
+      setStatus({
+        emailStatus: status.emailStatus === null ? "error" : status.emailStatus,
+        nameStatus: status.nameStatus === null ? "error" : status.nameStatus,
+      });
+      return;
     }
 
     setContent(1);

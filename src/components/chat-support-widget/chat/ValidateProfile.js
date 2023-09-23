@@ -20,7 +20,7 @@ export const ValidateProfile = ({ handleData, handleChangeData, status }) => {
           <input
             name="name"
             className={`w-full text-2xl p-2.5 md:text-base text-black border-2 ${
-              status.nameStatus === "error" ? "border-red-700" : "border-black"
+              status.nameStatus === "error" ? "border-red-700 outline-red-700" : "border-black"
             }`}
             onChange={handleChangeData}
             type="text"
